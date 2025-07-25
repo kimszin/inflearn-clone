@@ -21,7 +21,7 @@ export default function SigninPage() {
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-4">
       <h1 className="text-3xl font-bold">로그인</h1>
-      <p className="text-gray-700">인프런 계정으로 로그인할 수 있어요</p>
+      <p className="text-gray-700">가입한 계정으로 로그인할 수 있습니다</p>
 
       <form
         onSubmit={handleSubmit}
@@ -48,13 +48,16 @@ export default function SigninPage() {
 
         <button
           type="submit"
-          className="bg-green-500 text-white font-bold cursor-pointer rounded-sm p-2"
+          className="bg-blue-500 text-white font-bold cursor-pointer rounded-sm p-2"
         >
           로그인
         </button>
-        <Link href="/signup" className="text-center">
-          회원가입
-        </Link>
+        <p className="space-x-2 text-center">
+          <span>계정이 없으신가요?</span>
+          <Link href="/signup" className="text-blue-500">
+            회원가입
+          </Link>
+        </p>
       </form>
     </div>
   );

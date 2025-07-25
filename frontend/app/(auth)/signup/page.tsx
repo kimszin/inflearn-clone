@@ -35,7 +35,7 @@ export default function SignupPage() {
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-4">
       <h1 className="text-3xl font-bold">회원가입</h1>
-      <p className="text-gray-700">인프런에서 다양한 학습의 기회를 얻으세요</p>
+      <p className="text-gray-700">인프런에서 성장의 발판을 마련하세요</p>
 
       <form
         onSubmit={handleSubmit}
@@ -71,13 +71,16 @@ export default function SignupPage() {
 
         <button
           type="submit"
-          className="bg-green-500 text-white font-bold cursor-pointer rounded-sm p-2"
+          className="bg-blue-500 text-white font-bold cursor-pointer rounded-sm p-2"
         >
           회원가입
         </button>
-        <Link href="/signin" className="text-center">
-          로그인
-        </Link>
+        <p className="space-x-2 text-center">
+          <span>이미 계정이 있으신가요?</span>
+          <Link href="/signin" className="text-blue-500">
+            로그인
+          </Link>
+        </p>
       </form>
     </div>
   );
