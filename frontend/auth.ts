@@ -9,7 +9,8 @@ import { JWT } from "next-auth/jwt";
 export const { handlers, auth, signIn, signOut } = NextAuth({
   useSecureCookies: process.env.NODE_ENV === "production",
   trustHost: true,
-  adapter: PrismaAdapter(prisma),
+  // credentials 방식 + jwt 전략이면 필요 없음, credentials 방식 + session 전략이면 필요
+  // adapter: PrismaAdapter(prisma)
   secret: process.env.AUTH_SECRET,
   providers: [
     CredentialsProvider({
@@ -61,9 +62,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   jwt: {
     encode: async ({ token, secret }) => {
+      console.log("encode");
+      // jwt 생성하는 로직인데 로그인 성공후 한번 실행(위의 authorize 함수 호출하여 user 반환 후)
       return jwt.sign(token as jwt.JwtPayload, secret as string);
     },
     decode: async ({ token, secret }) => {
+      console.log("decode");
+      // jwt 검증하는 로직인데 로그인 후 매 요청마다 실행하는 것은 아니고 auth 함수, useSession() 호출할때 실행
       return jwt.verify(token as string, secret as string) as JWT;
     },
   },
