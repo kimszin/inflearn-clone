@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -56,7 +55,7 @@ model User {
 
   accounts Account[]
   sessions Session[]
-  courses Course[]
+  courses Course[] // 하나의 User는 여러 Course를 가질 수 있음
   courseEnrollments CourseEnrollment[]
   courseReviews CourseReview[]
   courseQuestions CourseQuestion[]

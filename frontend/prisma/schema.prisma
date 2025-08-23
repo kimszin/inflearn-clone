@@ -7,7 +7,6 @@
 // backend에 있는 schema.prisma 파일 그대로 copy
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
