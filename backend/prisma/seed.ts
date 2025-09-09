@@ -85,17 +85,12 @@ async function main() {
   console.log('카테고리 시드 데이터가 성공적으로 생성되었습니다.');
 }
 
-main()
-  .catch((error) => {
-    console.error('시드 데이터 생성 중 오류가 발생했습니다', error);
-    process.exit(1);
-  })
-  // prisma.$disconnect()는 비동기 함수니까 await가 필요.
-  // 그런데 finally()는 스펙상 return이 없어야 함(cleanup 용도로 사용하기 때문)
-  // prisma.$disconnect()는 Promise<void>를 반환하는 비동기 함수로,
-  // await 없이 호출하면 데이터베이스 연결이 완전히 종료되기 전에 프로세스가 종료될 수 있음.
-  // 밑의 주석을 넣는 것으로 해당 코드에서만 eslint를 무시할 수 있음.
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  .finally(async () => {
+void (async function () {
+  try {
+    await main();
+  } catch (e) {
+    console.error(e);
+  } finally {
     await prisma.$disconnect();
-  });
+  }
+})();
