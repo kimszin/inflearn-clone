@@ -56,7 +56,7 @@ model User {
 
   accounts Account[]
   sessions Session[]
-  courses Course[]
+  courses Course[] // 하나의 User는 여러 Course를 가질 수 있음
   courseEnrollments CourseEnrollment[]
   courseReviews CourseReview[]
   courseQuestions CourseQuestion[]
@@ -85,13 +85,14 @@ model Course {
   price Int @default(0)
   discountPrice Int? @map("discount_price")
   level String @default("BEGINNER")
+  status String @default("DRAFT")
   instructorId String @map("instructor_id")
   isPublished Boolean @default(false) @map("is_published")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
   sections Section[]
   lectures Lecture[]
-  category CourseCategory[]
+  categories CourseCategory[]
   enrollments CourseEnrollment[]
   reviews CourseReview[]
   questions CourseQuestion[]
