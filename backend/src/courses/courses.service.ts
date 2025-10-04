@@ -7,7 +7,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { Course, Prisma } from '@prisma/client';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-import * as slugfy from 'slug';
+import slug from 'slug';
 
 @Injectable()
 export class CoursesService {
@@ -20,7 +20,7 @@ export class CoursesService {
     return this.prisma.course.create({
       data: {
         title: createCourseDto.title,
-        slug: slugfy(createCourseDto.title),
+        slug: slug(createCourseDto.title),
         instructorId: userId,
         status: 'DRAFT',
       },

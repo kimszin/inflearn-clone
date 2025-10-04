@@ -1,4 +1,5 @@
-import { Express } from 'express';
+// import { Express } from 'express';
+import 'express';
 
 type JwtPayload = {
   sub: string;
@@ -10,6 +11,8 @@ type JwtPayload = {
 
 declare global {
   namespace Express {
-    interface User extends JwtPayload {}
+    interface User extends JwtPayload {
+      _brand?: never;
+    }
   }
 }
